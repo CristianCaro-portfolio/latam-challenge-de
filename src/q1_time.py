@@ -50,3 +50,24 @@ def q1_time(file_path: str) -> List[Tuple[datetime.date, str]]:
             result.append((date, top_user))
     
     return result
+
+
+if __name__ == "__main__":
+    import sys
+    import time
+    
+    file_path = "../farmers-protest-tweets-2021-2-4.json"
+    
+    if len(sys.argv) > 1:
+        file_path = sys.argv[1]
+    
+    print("🕐 Ejecutando q1_time...")
+    start_time = time.time()
+    result = q1_time(file_path)
+    elapsed_time = time.time() - start_time
+    
+    print(f"⏱️  Tiempo: {elapsed_time:.2f} segundos")
+    print(f"📊 Top 10 fechas con más tweets:")
+    for i, (date, username) in enumerate(result, 1):
+        print(f"  {i}. {date} - {username}")
+    print(f"\n✅ Total resultados: {len(result)}")

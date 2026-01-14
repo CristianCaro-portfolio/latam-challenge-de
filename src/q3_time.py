@@ -34,3 +34,24 @@ def q3_time(file_path: str) -> List[Tuple[str, int]]:
     
     # Retornar top 10 usuarios más mencionados
     return mention_counter.most_common(10)
+
+
+if __name__ == "__main__":
+    import sys
+    import time
+    
+    file_path = "../farmers-protest-tweets-2021-2-4.json"
+    
+    if len(sys.argv) > 1:
+        file_path = sys.argv[1]
+    
+    print("🕐 Ejecutando q3_time...")
+    start_time = time.time()
+    result = q3_time(file_path)
+    elapsed_time = time.time() - start_time
+    
+    print(f"⏱️  Tiempo: {elapsed_time:.2f} segundos")
+    print(f"📊 Top 10 usuarios más mencionados:")
+    for i, (username, count) in enumerate(result, 1):
+        print(f"  {i}. @{username} - {count:,} menciones")
+    print(f"\n✅ Total resultados: {len(result)}")

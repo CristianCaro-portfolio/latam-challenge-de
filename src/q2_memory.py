@@ -48,3 +48,24 @@ def q2_memory(file_path: str) -> List[Tuple[str, int]]:
     
     # Retornar top 10 emojis
     return emoji_counter.most_common(10)
+
+
+if __name__ == "__main__":
+    import sys
+    import time
+    
+    file_path = "../farmers-protest-tweets-2021-2-4.json"
+    
+    if len(sys.argv) > 1:
+        file_path = sys.argv[1]
+    
+    print("💾 Ejecutando q2_memory...")
+    start_time = time.time()
+    result = q2_memory(file_path)
+    elapsed_time = time.time() - start_time
+    
+    print(f"⏱️  Tiempo: {elapsed_time:.2f} segundos")
+    print(f"📊 Top 10 emojis más usados:")
+    for i, (emoji, count) in enumerate(result, 1):
+        print(f"  {i}. {emoji} - {count:,} veces")
+    print(f"\n✅ Total resultados: {len(result)}")
